@@ -24,38 +24,54 @@ var bx9 = $('#box9');
 
   function winConditions() {
     if((bx1.hasClass('x') && bx2.hasClass('x')) && bx3.hasClass('x')){
-        alert('Player One wins!');
+        $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+        resetBoard();
     } else if((bx1.hasClass('o') && bx2.hasClass('o')) && bx3.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx4.hasClass('x') && bx5.hasClass('x')) && bx6.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx4.hasClass('o') && bx5.hasClass('o')) && bx6.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx7.hasClass('x') && bx8.hasClass('x')) && bx9.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx7.hasClass('o') && bx8.hasClass('o')) && bx9.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx1.hasClass('x') && bx4.hasClass('x')) && bx7.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx1.hasClass('o') && bx4.hasClass('o')) && bx7.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx2.hasClass('x') && bx5.hasClass('x')) && bx8.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx2.hasClass('o') && bx5.hasClass('o')) && bx8.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx3.hasClass('x') && bx6.hasClass('x')) && bx9.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx3.hasClass('o') && bx6.hasClass('o')) && bx9.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx1.hasClass('x') && bx5.hasClass('x')) && bx9.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx1.hasClass('o') && bx5.hasClass('o')) && bx9.hasClass('o')){
-        alert('Player Two wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
     } else if((bx3.hasClass('x') && bx5.hasClass('x')) && bx7.hasClass('x')){
-        alert('Player One wins!');
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player One wins!</h1>');
+      resetBoard();
     } else if((bx3.hasClass('o') && bx5.hasClass('o')) && bx7.hasClass('o')){
-        alert('Player Two wins!');
-    }    
+      $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
+      resetBoard();
+    }
     // } else if ($('box').hasClass('x' || 'o')) {
 		//     alert("Draw! Try playing again!");
 		//     resetBoard();
@@ -88,8 +104,9 @@ var bx9 = $('#box9');
 
   });
 
-  $('#reset').on('click', function() {
+  $('#reset,#reset2').on('click', function() {
   	resetBoard();
+    $('.jumbotron').addClass('hidden');
   })
 
 });
