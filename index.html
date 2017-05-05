@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- link to custom stylesheet (always require after Bootstrap) -->
-    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
     <!-- jQuery from CDN -->
-
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
     <!-- link to custom javascript file (always require after external JS libraries) -->
+    <script src="js/app.js" charset="utf-8"></script>
 
     <title>Tic Tac Toe</title>
   </head>
@@ -35,12 +35,23 @@
           <!-- you can put rows inside of columns! -->
           <!-- Bootstrap subdivides these 'nested' rows into 12 columns, too! -->
           <div class="row">
-            <div class="col-md-4 box">a</div>
-            <div class="col-md-4 box">a</div>
-            <div class="col-md-4 box">a</div>
+            <div class="col-md-4 box" id="box1">1</div>
+            <div class="col-md-4 box" id="box2">2</div>
+            <div class="col-md-4 box" id="box3">3</div>
           </div>
-
-
+          <div class="row">
+            <div class="col-md-4 box" id="box4">4</div>
+            <div class="col-md-4 box" id="box5">5</div>
+            <div class="col-md-4 box" id="box6">6</div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 box" id="box7">7</div>
+            <div class="col-md-4 box" id="box8">8</div>
+            <div class="col-md-4 box" id="box9">9</div>
+          </div>
+          <div class="row">
+            <button class="center-block" id="reset">Play the Game</button>
+          </div>
 
         </div>
       </div>

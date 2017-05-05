@@ -1,8 +1,26 @@
+body {
+  background-color: lightgrey;
+}
+
 #board {
   margin-top: 10px;
 }
 
 .box {
-  border: 1px solid black;
+  border: 2px solid black;
   height: 150px;
+}
+
+.clicked {
+  font-size: 4em;
+  font-weight: bolder;
+  color: red;
+}
+
+.x {
+  background-color: red;
+}
+
+.o {
+  background-color: blue;
 }
