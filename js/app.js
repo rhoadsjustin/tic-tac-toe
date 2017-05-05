@@ -12,14 +12,61 @@ var playerOne = 'x';
 var playerTwo = 'o';
 var currPlayer = playerOne;
 
-  // function validatePlay(squareplayed) {
-  //   if ( $(squareplayed).hasClass('free') ) {
-  //         playValid = true;
-  //       } else {
-  //         playValid = false;
-  //         return false;
-  //       }
-  //   }
+var bx1 = $('#box1');
+var bx2 = $('#box2');
+var bx3 = $('#box3');
+var bx4 = $('#box4');
+var bx5 = $('#box5');
+var bx6 = $('#box6');
+var bx7 = $('#box7');
+var bx8 = $('#box8');
+var bx9 = $('#box9');
+
+  function winConditions() {
+    if((bx1.hasClass('x') && bx2.hasClass('x')) && bx3.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx1.hasClass('o') && bx2.hasClass('o')) && bx3.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx4.hasClass('x') && bx5.hasClass('x')) && bx6.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx4.hasClass('o') && bx5.hasClass('o')) && bx6.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx7.hasClass('x') && bx8.hasClass('x')) && bx9.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx7.hasClass('o') && bx8.hasClass('o')) && bx9.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx1.hasClass('x') && bx4.hasClass('x')) && bx7.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx1.hasClass('o') && bx4.hasClass('o')) && bx7.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx2.hasClass('x') && bx5.hasClass('x')) && bx8.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx2.hasClass('o') && bx5.hasClass('o')) && bx8.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx3.hasClass('x') && bx6.hasClass('x')) && bx9.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx3.hasClass('o') && bx6.hasClass('o')) && bx9.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx1.hasClass('x') && bx5.hasClass('x')) && bx9.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx1.hasClass('o') && bx5.hasClass('o')) && bx9.hasClass('o')){
+        alert('Player Two wins!');
+    } else if((bx3.hasClass('x') && bx5.hasClass('x')) && bx7.hasClass('x')){
+        alert('Player One wins!');
+    } else if((bx3.hasClass('o') && bx5.hasClass('o')) && bx7.hasClass('o')){
+        alert('Player Two wins!');
+    }    
+    // } else if ($('box').hasClass('x' || 'o')) {
+		//     alert("Draw! Try playing again!");
+		//     resetBoard();
+	  // }
+  }
+
+  function resetBoard() {
+    $('.col-md-4').removeClass('o');
+    $('.col-md-4').removeClass('x');
+    currPlayer = playerOne;
+  }
 
 
   function changePlayer(){
@@ -30,10 +77,19 @@ var currPlayer = playerOne;
     }
   }
 
-  $('.col-md-4').click(function () {
-    $(this).addClass(currPlayer);
-    changePlayer();
-    });
+  $('.col-md-4').click(function play() {
+    if( $(this).hasClass('x') || $(this).hasClass('o') ){
+      alert("Already clicked!");
+    } else {
+      $(this).addClass(currPlayer);
+      changePlayer();
+      winConditions();
+      }
 
+  });
+
+  $('#reset').on('click', function() {
+  	resetBoard();
+  })
 
 });

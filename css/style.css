@@ -7,7 +7,7 @@ body {
 }
 
 .box {
-  border: 2px solid black;
+  border: 1px solid black;
   height: 150px;
 }
 
@@ -19,6 +19,7 @@ body {
 
 .x {
   background-color: red;
+  background-image: url('imgs/player1.jpg');
 }
 
 .o {
