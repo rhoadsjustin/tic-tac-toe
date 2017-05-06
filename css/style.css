@@ -1,16 +1,30 @@
+html {
+  background:  url(https://media.giphy.com/media/sQ5jimwRnCqkw/giphy.gif) no-repeat center center fixed;
+  background-size: cover;
+}
+
 body {
-  background-color: lightgrey;
+  background: none;
 }
 
 #board {
   margin-top: 10px;
 }
-
+.title {
+  background: blue;
+  color: white;
+}
 .box {
   border: 1px solid black;
   height: 150px;
+  background-color: white;
 }
 
+#reset2 {
+  margin-top: 20px;
+  background: blue;
+  color: white;
+}
 .clicked {
   font-size: 4em;
   font-weight: bolder;
@@ -23,4 +37,11 @@ body {
 
 .o {
   background-color: blue;
+}
+
+.jumbotron {
+
+}
+#winimage {
+  margin-bottom: 10px;
 }

@@ -72,7 +72,7 @@ var bx9 = $('#box9');
       $('.jumbotron').removeClass('hidden').prepend('<h1>Player Two wins!</h1>');
       resetBoard();
     }
-    // } else if ($('box').hasClass('x' || 'o')) {
+    // } else if (!$('.col-md-4').hasClass('x' || 'o')) {
 		//     alert("Draw! Try playing again!");
 		//     resetBoard();
 	  // }
@@ -107,6 +107,7 @@ var bx9 = $('#box9');
   $('#reset,#reset2').on('click', function() {
   	resetBoard();
     $('.jumbotron').addClass('hidden');
+    $('.jumbotron').remove(h1);
   })
 
 });
