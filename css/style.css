@@ -13,6 +13,7 @@ body {
 .title {
   background: blue;
   color: white;
+  font-size: 8em;
 }
 .box {
   border: 1px solid black;
@@ -24,11 +25,13 @@ body {
   margin-top: 20px;
   background: blue;
   color: white;
+  font-size: 3em;
 }
-.clicked {
-  font-size: 4em;
+.currLetter {
+  font-size: 8em;
   font-weight: bolder;
-  color: red;
+  color: white;
+  margin: 0 auto;
 }
 
 .x {
