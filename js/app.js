@@ -143,6 +143,9 @@ function draw() {
     if( $(this).hasClass('x') || $(this).hasClass('o') ){
       alert("Already clicked!");
     } else {
+      if(moveCount === 0) {
+        startSong();
+      }
       moveCount++;
       $(this).addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
       changePlayer();
@@ -163,4 +166,7 @@ function draw() {
     $('#drawimage').addClass('hidden');
   })
 
+ function startSong() {
+   $('body').append('<audio autoplay loop> <source src="supermario.mp3" type="audio/mp3"></audio>');
+ }
 });
