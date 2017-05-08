@@ -45,6 +45,6 @@ body {
 .jumbotron {
 
 }
-#winimage {
+#winimage, #drawimage {
   margin-bottom: 10px;
 }

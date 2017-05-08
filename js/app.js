@@ -27,15 +27,18 @@ var bx9 = $('#box9');
 //displays a winner or if there is a draw prompting the players to play again.
 function playerOneWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p1wins">Player One wins!</h1>');
+  $('#winimage').removeClass('hidden');
 }
 
 function playerTwoWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p2wins">Player Two wins!</h1>');
+  $('#winimage').removeClass('hidden');
 }
 
 function draw() {
   if(moveCount >= 9) {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="draw">Its a draw!</h1>');
+  $('#drawimage').removeClass('hidden');
   }
 }
 
