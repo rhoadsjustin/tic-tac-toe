@@ -12,6 +12,8 @@ var playerOne = 'x';
 var playerTwo = 'o';
 var currPlayer = playerOne;
 
+var playerOneWinTotal = 0;
+var playerTwoWinTotal = 0;
 var moveCount = 0;
 
 var bx1 = $('#box1');
@@ -28,25 +30,33 @@ var bx9 = $('#box9');
 function playerOneWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p1wins">Player One wins!</h1>');
   $('#winimage').removeClass('hidden');
+  playerOneWinTotal++;
+  $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
 function playerTwoWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p2wins">Player Two wins!</h1>');
   $('#winimage').removeClass('hidden');
+  playerTwoWinTotal++;
+  $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
 function draw() {
   if(moveCount >= 9) {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="draw">Its a draw!</h1>');
+  $('#winimage').addClass('hidden');
   $('#drawimage').removeClass('hidden');
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
   }
 }
 
 // all 16 different win conditions
   function winConditions() {
     if((bx1.hasClass('x') && bx2.hasClass('x')) && bx3.hasClass('x')){
-          playerOneWins();
-          resetBoard();
+      playerOneWins();
+      resetBoard();
     } else if((bx1.hasClass('o') && bx2.hasClass('o')) && bx3.hasClass('o')){
       playerTwoWins();
       resetBoard();
@@ -116,11 +126,10 @@ function draw() {
       alert("Already clicked!");
     } else {
       moveCount++;
-      $(this).addClass(currPlayer, 'clicked').prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
+      $(this).addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
       changePlayer();
       winConditions();
       draw();
-      console.log(moveCount);
     }
   });
 
