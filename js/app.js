@@ -27,21 +27,6 @@ var bx8 = $('#box8');
 var bx9 = $('#box9');
 
 
-// scoreboard tracker function.
-function scoreBoardTracker() {
-  if (playerOneWinTotal === 0) {
-    $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
-    console.log(playerOneWinTotal);
-  } else if (playerOneWinTotal > 0) {
-    $('#playerOneScoreBoard').remove('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
-    $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
-  } else if (playerTwoWinTotal === 0) {
-    $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
-  } else if (playerTwoWinTotal > 0) {
-    $('#playerTwoScoreBoard').remove('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
-    $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
-  }
-}
 
 
 
@@ -78,6 +63,7 @@ function draw() {
   $('#winimage').addClass('hidden');
   $('#drawimage').removeClass('hidden');
   $('html, body').animate({ scrollTop: 0 }, 'fast');
+  resetBoard();
   }
 }
 
