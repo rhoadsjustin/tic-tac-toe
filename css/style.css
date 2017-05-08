@@ -1,5 +1,5 @@
 html {
-  background:  url(https://media.giphy.com/media/sQ5jimwRnCqkw/giphy.gif) no-repeat center center fixed;
+  background:  url(https://media.giphy.com/media/LL8lkp4Mma2GY/giphy.gif) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -11,18 +11,18 @@ body {
   margin-top: 10px;
 }
 .title {
-  background: blue;
+  background: #127C22;
   color: white;
   font-size: 4em;
 }
 
 #scoreboard {
-  background: red;
+  background: #CC5A1D;
   color: white;
   font-size: 3em;
 }
 #playerOneScoreBoard, #playerTwoScoreBoard {
-  background: blue;
+  background: #127C22;
   color: white;
   font-size: 2em;
 }
@@ -38,7 +38,7 @@ h4 {
 
 #reset2 {
   margin-top: 20px;
-  background: blue;
+  background: #D72700;
   color: white;
   font-size: 3em;
 }

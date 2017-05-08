@@ -26,7 +26,7 @@ var bx7 = $('#box7');
 var bx8 = $('#box8');
 var bx9 = $('#box9');
 
-
+var coinSound = $('#mysoundclip')[0];
 
 
 
@@ -146,6 +146,7 @@ function draw() {
       if(moveCount === 0) {
         startSong();
       }
+      coinSound.play();
       moveCount++;
       $(this).addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
       changePlayer();
