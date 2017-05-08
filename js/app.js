@@ -26,21 +26,50 @@ var bx7 = $('#box7');
 var bx8 = $('#box8');
 var bx9 = $('#box9');
 
+
+// scoreboard tracker function.
+function scoreBoardTracker() {
+  if (playerOneWinTotal === 0) {
+    $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
+    console.log(playerOneWinTotal);
+  } else if (playerOneWinTotal > 0) {
+    $('#playerOneScoreBoard').remove('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
+    $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
+  } else if (playerTwoWinTotal === 0) {
+    $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
+  } else if (playerTwoWinTotal > 0) {
+    $('#playerTwoScoreBoard').remove('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
+    $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
+  }
+}
+
+
+
 //displays a winner or if there is a draw prompting the players to play again.
 function playerOneWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p1wins">Player One wins!</h1>');
   $('#winimage').removeClass('hidden');
-  playerOneWinTotal++;
-  $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
   $('html, body').animate({ scrollTop: 0 }, 'fast');
+  playerOneWinTotal++;
+  // $('#playerOneScoreBoard').append('<h4 class="wintotal">' + playerOneWinTotal + '</h4>');
+  if (playerOneWinTotal === 1) {
+    $('#p1Score').html(playerOneWinTotal);
+  } else {
+    $('#p1Score').html(playerOneWinTotal);
+  }
 }
 
 function playerTwoWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p2wins">Player Two wins!</h1>');
   $('#winimage').removeClass('hidden');
-  playerTwoWinTotal++;
-  $('#playerTwoScoreBoard').append('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
+  // $('#playerTwoScoreBoard').remove('<h4 class="wintotal">' + playerTwoWinTotal + '</h4>');
   $('html, body').animate({ scrollTop: 0 }, 'fast');
+  playerTwoWinTotal++;
+  if (playerTwoWinTotal === 1) {
+    $('#p2Score').html(playerTwoWinTotal);
+  } else {
+    $('#p2Score').html(playerTwoWinTotal);
+  }
 }
 
 function draw() {
@@ -106,10 +135,13 @@ function draw() {
   }
 //resets the board back to its original state
   function resetBoard() {
-    $('.col-md-4').removeClass('o');
+    $('.col-md-4').empty();
     $('.col-md-4').removeClass('x');
+    $('.col-md-4').removeClass('o');
     currPlayer = playerOne;
     moveCount = 0;
+    $('.col-md-4').addClass('hidden');
+
   }
 
 // changes the player after each click
@@ -141,6 +173,7 @@ function draw() {
     $('#p2wins').remove();
     $('#draw').remove();
     $('.currLetter').remove();
+    $('.col-md-4').removeClass('hidden');
   })
 
 });

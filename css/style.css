@@ -50,11 +50,13 @@ h4 {
 }
 
 .x {
-  background-color: red;
+  background-image: url('https://media.giphy.com/media/11r9VKSIAFsKgU/giphy.gif');
+  background-size: cover;
 }
 
 .o {
-  background-color: blue;
+  background-image: url('https://media.giphy.com/media/8DFhygceJW8M/giphy.gif');
+  background-size: cover;
 }
 
 .jumbotron {
