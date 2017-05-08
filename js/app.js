@@ -121,12 +121,12 @@ function draw() {
   }
 //resets the board back to its original state
   function resetBoard() {
-    $('.col-md-4').empty();
-    $('.col-md-4').removeClass('x');
-    $('.col-md-4').removeClass('o');
+    $('.box').empty();
+    $('.box').removeClass('x');
+    $('.box').removeClass('o');
     currPlayer = playerOne;
     moveCount = 0;
-    $('.col-md-4').addClass('hidden');
+    $('.box').addClass('hidden');
 
   }
 
@@ -139,7 +139,7 @@ function draw() {
     }
   }
 // click function that runs the game, checks for a winner, and increases the move count to check for a draw
-  $('.col-md-4').click(function play() {
+  $('.box').click(function play() {
     if( $(this).hasClass('x') || $(this).hasClass('o') ){
       alert("Already clicked!");
     } else {
@@ -162,7 +162,7 @@ function draw() {
     $('#p2wins').remove();
     $('#draw').remove();
     $('.currLetter').remove();
-    $('.col-md-4').removeClass('hidden');
+    $('.box').removeClass('hidden');
     $('#drawimage').addClass('hidden');
   })
 
