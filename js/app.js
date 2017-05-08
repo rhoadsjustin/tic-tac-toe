@@ -160,6 +160,7 @@ function draw() {
     $('#draw').remove();
     $('.currLetter').remove();
     $('.col-md-4').removeClass('hidden');
+    $('#drawimage').addClass('hidden');
   })
 
 });
