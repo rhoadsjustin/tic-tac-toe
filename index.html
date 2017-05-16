@@ -21,7 +21,7 @@
   </head>
   <audio id="mysoundclip" preload="auto">
     <source src="Mario-coin-sound.mp3"></source>
-</audio>
+  </audio>
   <body>
     <div class="jumbotron text-center hidden">
       <img class="center-block img-circle hidden" id="winimage" src="imgs/200w_d.gif">
@@ -78,7 +78,11 @@
         </div>
         <!-- reset button -->
             <div class="col-md-6 col-md-offset-3">
+              <div class="row" id="displayPlayer">
+              </div>
               <div class="row">
+                <button class="center-block" id="playComp">Play against Comp<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+                </button>
                 <button class="center-block" id="reset2">Play the Game <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                 </button>
               </div>

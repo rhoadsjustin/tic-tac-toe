@@ -3,14 +3,11 @@ $(document).ready(function() {
   // all code to manipulate the DOM
   // goes inside this function
 
-//TODO: create a global variable that tracks if current player is x or o
-//TODO: make one click listener that will place either x or o depending on current player
-
-// TODO: Player O has a specific class that matches their player name ( O )
-// TODO: Player X has a specific class that matches their player name ( X )
+//my global variables.
 var playerOne = 'x';
 var playerTwo = 'o';
 var currPlayer = playerOne;
+var isAIActive = false;
 
 var playerOneWinTotal = 0;
 var playerTwoWinTotal = 0;
@@ -27,7 +24,6 @@ var bx8 = $('#box8');
 var bx9 = $('#box9');
 
 var coinSound = $('#mysoundclip')[0];
-
 
 
 //displays a winner or if there is a draw prompting the players to play again.
@@ -134,10 +130,36 @@ function draw() {
   function changePlayer(){
   if(currPlayer === playerOne) {
       currPlayer = playerTwo;
+      $('#displayPlayer').empty();
+      $('#displayPlayer').append(`<h2 class="text-center">It's ${currPlayer}'s turn!</h2>`);
+      activeAI();
     } else {
       currPlayer = playerOne;
+      $('#displayPlayer').empty();
+      $('#displayPlayer').append(`<h2 class="text-center">It's ${currPlayer}'s turn!</h2>`);
+      activeAI();
     }
   }
+
+  // playing against AI
+$('#playComp').on('click', function selectAI(){
+    if(isAIActive === false) {
+      isAIActive = true;
+      activeAI();
+    } else {
+      isAIActive = false;
+    }
+    console.log(isAIActive);
+});
+
+// AI playing function
+function activeAI() {
+  if(isAIActive === true) {
+    var boxToBeChecked = Math.floor(Math.random()*9+1);
+    console.log(boxToBeChecked);
+  }
+};
+
 // click function that runs the game, checks for a winner, and increases the move count to check for a draw
   $('.box').click(function play() {
     if( $(this).hasClass('x') || $(this).hasClass('o') ){
@@ -165,8 +187,9 @@ function draw() {
     $('.currLetter').remove();
     $('.box').removeClass('hidden');
     $('#drawimage').addClass('hidden');
+    $('#displayPlayer').empty();
   })
-
+//background music function
  function startSong() {
    $('body').append('<audio autoplay loop> <source src="supermario.mp3" type="audio/mp3"></audio>');
  }
