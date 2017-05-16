@@ -147,15 +147,17 @@ function draw() {
 $('#playComp').on('click', function selectAI(){
     if(isAIActive === false) {
       isAIActive = true;
+      $('#AI').prepend(`<h2 class='text-center' id='compDisplayPlayer'>You are playing against AI</h2>`)
     } else {
       isAIActive = false;
+      $('#AI').empty();
     }
     console.log(isAIActive);
 });
 
 // AI playing function
 function activeAI() {
-  var delay = Math.floor(Math.random()*3000+1000));
+  var delay = Math.floor(Math.random()*3000+1000);
   window.setTimeout(function(){
     var boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
     var full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
@@ -205,6 +207,9 @@ function activeAI() {
     $('.box').removeClass('hidden');
     $('#drawimage').addClass('hidden');
     $('#displayPlayer').empty();
+    if(isAIActive === false){
+    $('#compDisplayPlayer').append(`<h2 class='text-center' id='compDisplayPlayer'>You are playing against AI</h2>`)
+  }
   })
 //background music function
  function startSong() {

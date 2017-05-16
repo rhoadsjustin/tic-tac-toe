@@ -16,7 +16,7 @@ body {
   font-size: 4em;
 }
 
-#scoreboard {
+#scoreboard, #compDisplayPlayer {
   background: #CC5A1D;
   color: white;
   font-size: 3em;
