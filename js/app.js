@@ -129,15 +129,17 @@ function draw() {
 // changes the player after each click
   function changePlayer(){
   if(currPlayer === playerOne) {
-      currPlayer = playerTwo;
+      if(isAIActive){
+        activeAI();
+      } else {
+        currPlayer = playerTwo;
+      }
       $('#displayPlayer').empty();
       $('#displayPlayer').append(`<h2 class="text-center">It's ${currPlayer}'s turn!</h2>`);
-      activeAI();
     } else {
       currPlayer = playerOne;
       $('#displayPlayer').empty();
       $('#displayPlayer').append(`<h2 class="text-center">It's ${currPlayer}'s turn!</h2>`);
-      activeAI();
     }
   }
 
@@ -145,7 +147,6 @@ function draw() {
 $('#playComp').on('click', function selectAI(){
     if(isAIActive === false) {
       isAIActive = true;
-      activeAI();
     } else {
       isAIActive = false;
     }
@@ -154,10 +155,26 @@ $('#playComp').on('click', function selectAI(){
 
 // AI playing function
 function activeAI() {
-  if(isAIActive === true) {
-    var boxToBeChecked = Math.floor(Math.random()*9+1);
-    console.log(boxToBeChecked);
-  }
+  var delay = Math.floor(Math.random()*3000+1000));
+  window.setTimeout(function(){
+    var boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
+    var full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
+    if(moveCount < 9){
+      while(full){
+        boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
+        full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
+      }
+      currPlayer = playerTwo;
+            coinSound.play();
+            boxToBeChecked.addClass('o');
+            boxToBeChecked.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
+      console.log(boxToBeChecked);
+      winConditions();
+      currPlayer = playerOne;
+    } else {
+      winConditions();
+    }
+  }, delay);
 };
 
 // click function that runs the game, checks for a winner, and increases the move count to check for a draw
