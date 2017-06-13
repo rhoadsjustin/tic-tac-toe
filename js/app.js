@@ -1,8 +1,3 @@
-// wait for the DOM to finish loading
-$(document).ready(function() {
-  // all code to manipulate the DOM
-  // goes inside this function
-
 //my global variables.
 var playerOne = 'x';
 var playerTwo = 'o';
@@ -12,20 +7,31 @@ var isAIActive = false;
 var playerOneWinTotal = 0;
 var playerTwoWinTotal = 0;
 var moveCount = 0;
-
-var bx1 = $('#box1');
-var bx2 = $('#box2');
-var bx3 = $('#box3');
-var bx4 = $('#box4');
-var bx5 = $('#box5');
-var bx6 = $('#box6');
-var bx7 = $('#box7');
-var bx8 = $('#box8');
-var bx9 = $('#box9');
-
-var coinSound = $('#mysoundclip')[0];
+var boxToBeChecked;
+var full;
+var arrayNumbers = [1,2,3,4,5,6,7,8,9]
+var board= [ '', '', '',
+            '', '', '',
+            '' , '', ''];
+// wait for the DOM to finish loading
+$(document).ready(function() {
+  // all code to manipulate the DOM
+  // goes inside this function
 
 
+
+
+  var bx1 = $('#box1');
+  var bx2 = $('#box2');
+  var bx3 = $('#box3');
+  var bx4 = $('#box4');
+  var bx5 = $('#box5');
+  var bx6 = $('#box6');
+  var bx7 = $('#box7');
+  var bx8 = $('#box8');
+  var bx9 = $('#box9');
+
+  var coinSound = $('#mysoundclip')[0];
 //displays a winner or if there is a draw prompting the players to play again.
 function playerOneWins() {
   $('.jumbotron').removeClass('hidden').prepend('<h1 id="p1wins">Player One wins!</h1>');
@@ -123,7 +129,7 @@ function draw() {
     currPlayer = playerOne;
     moveCount = 0;
     $('.box').addClass('hidden');
-
+    isAIActive = false;
   }
 
 // changes the player after each click
@@ -157,38 +163,117 @@ $('#playComp').on('click', function selectAI(){
 
 // AI playing function
 function activeAI() {
-  var delay = Math.floor(Math.random()*3000+1000);
+  var delay = Math.floor(Math.random()*3000+1500);
   window.setTimeout(function(){
-    var boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
-    var full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
+    // boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
+    // full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
     if(moveCount < 9){
-      while(full){
-        boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
-        full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
-      }
+      if(moveCount === 1){
+        firstAIMove();
+        currPlayer = playerOne;
+        console.log(moveCount);
+      } else {
+        AIblock();
+      //   while(full){
+      //   boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
+      //   full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
+      // }
       currPlayer = playerTwo;
             coinSound.play();
+            board.push(boxToBeChecked);
+            console.log(board);
             boxToBeChecked.addClass('o');
             boxToBeChecked.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
       console.log(boxToBeChecked);
       winConditions();
       currPlayer = playerOne;
+    }
     } else {
       winConditions();
     }
   }, delay);
 };
 
+//AI examines the board to determine the best moves
+function firstAIMove() {
+  currPlayer = playerTwo;
+  if(bx1.hasClass('x') || bx3.hasClass('x') || bx7.hasClass('x') || bx9.hasClass('x')) {
+    bx5.addClass('o');
+    bx5.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
+    board.push(bx5);
+    coinSound.play();
+  } else {
+    bx7.addClass('o');
+    bx7.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
+    board.push(bx7);
+    coinSound.play();
+  }
+}
+
+function AIblock(){
+  if( board[0] ===   && `bx${arrayNumbers[i+1]}`.hasClass('x') && !`bx${arrayNumbers[i+2]}`.hasClass('o')) {
+     if(full = bx[i].hasClass('x') || bx[i+1].hasClass('o')) {
+       boxToBeChecked = bx[i+5];
+       console.log(boxToBeChecked);
+     } else {
+       boxToBeChecked = `bx${arrayNumbers[i+2]}`;
+       console.log(boxToBeChecked);
+     }
+   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+3]}`.hasClass('x') && !`bx${arrayNumbers[i+6]}`.hasClass('o')) {
+     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+3]}`.hasClass('o')) {
+       boxToBeChecked = `bx${arrayNumbers[i+7]}`;
+       console.log(boxToBeChecked);
+     } else {
+       boxToBeChecked = `bx${arrayNumbers[i+6]}`;
+     }
+   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+2]}`.hasClass('x') && !`bx${arrayNumbers[i+1]}`.hasClass('o')) {
+     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+2]}`.hasClass('o')) {
+       boxToBeChecked = `bx${arrayNumbers[i+3]}`;
+     } else{
+     boxToBeChecked = `bx${arrayNumbers[i+1]}`;
+     }
+   }
+  // arrayNumbers is global at top of app.js
+  // for (var i = 1; i < arrayNumbers.length+1; i++) {
+  //   if( `bx${arrayNumbers[i]}`.hasClass('x')  && `bx${arrayNumbers[i+1]}`.hasClass('x') && !`bx${arrayNumbers[i+2]}`.hasClass('o')) {
+  //     if(full = bx[i].hasClass('x') || bx[i+1].hasClass('o')) {
+  //       boxToBeChecked = bx[i+5];
+  //       console.log(boxToBeChecked);
+  //     } else {
+  //       boxToBeChecked = `bx${arrayNumbers[i+2]}`;
+  //       console.log(boxToBeChecked);
+  //     }
+  //   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+3]}`.hasClass('x') && !`bx${arrayNumbers[i+6]}`.hasClass('o')) {
+  //     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+3]}`.hasClass('o')) {
+  //       boxToBeChecked = `bx${arrayNumbers[i+7]}`;
+  //       console.log(boxToBeChecked);
+  //     } else {
+  //       boxToBeChecked = `bx${arrayNumbers[i+6]}`;
+  //     }
+  //   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+2]}`.hasClass('x') && !`bx${arrayNumbers[i+1]}`.hasClass('o')) {
+  //     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+2]}`.hasClass('o')) {
+  //       boxToBeChecked = `bx${arrayNumbers[i+3]}`;
+  //     } else{
+  //     boxToBeChecked = `bx${arrayNumbers[i+1]}`;
+  //     }
+  //   }
+  // }
+}
+
+function boardChecker () {
+
+}
+
 // click function that runs the game, checks for a winner, and increases the move count to check for a draw
   $('.box').click(function play() {
     if( $(this).hasClass('x') || $(this).hasClass('o') ){
       alert("Already clicked!");
     } else {
-      if(moveCount === 0) {
-        startSong();
-      }
       coinSound.play();
       moveCount++;
+      var boxNumber = $(this).attr('id');
+        board[boxNumber] = currPlayer;
+      console.log(board);
       $(this).addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
       changePlayer();
       winConditions();
@@ -208,11 +293,14 @@ function activeAI() {
     $('#drawimage').addClass('hidden');
     $('#displayPlayer').empty();
     if(isAIActive === false){
-    $('#compDisplayPlayer').append(`<h2 class='text-center' id='compDisplayPlayer'>You are playing against AI</h2>`)
+    $('#compDisplayPlayer').empty();
+    stopSong();
   }
+    board = [];
   })
 //background music function
- function startSong() {
    $('body').append('<audio autoplay loop> <source src="supermario.mp3" type="audio/mp3"></audio>');
+ function stopSong() {
+   $('body').remove('<audio autoplay loop> <source src="supermario.mp3" type="audio/mp3"></audio>');
  }
 });
