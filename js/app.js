@@ -21,15 +21,15 @@ $(document).ready(function() {
 
 
 
-  var bx1 = $('#box1');
-  var bx2 = $('#box2');
-  var bx3 = $('#box3');
-  var bx4 = $('#box4');
-  var bx5 = $('#box5');
-  var bx6 = $('#box6');
-  var bx7 = $('#box7');
-  var bx8 = $('#box8');
-  var bx9 = $('#box9');
+  var bx1 = $('#0');
+  var bx2 = $('#1');
+  var bx3 = $('#2');
+  var bx4 = $('#3');
+  var bx5 = $('#4');
+  var bx6 = $('#5');
+  var bx7 = $('#6');
+  var bx8 = $('#7');
+  var bx9 = $('#8');
 
   var coinSound = $('#mysoundclip')[0];
 //displays a winner or if there is a draw prompting the players to play again.
@@ -130,6 +130,9 @@ function draw() {
     moveCount = 0;
     $('.box').addClass('hidden');
     isAIActive = false;
+    board= [ '', '', '',
+               '', '', '',
+               '' , '', ''];
   }
 
 // changes the player after each click
@@ -163,34 +166,76 @@ $('#playComp').on('click', function selectAI(){
 
 // AI playing function
 function activeAI() {
-  var delay = Math.floor(Math.random()*3000+1500);
-  window.setTimeout(function(){
+  var delay = Math.floor(Math.random() * 3000 + 1500);
+  window.setTimeout(function() {
     // boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
     // full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
-    if(moveCount < 9){
-      if(moveCount === 1){
+    if (moveCount < 9) {
+      if (moveCount === 1) {
         firstAIMove();
         currPlayer = playerOne;
         console.log(moveCount);
       } else {
-        AIblock();
-      //   while(full){
-      //   boxToBeChecked = $('#box' + Math.floor(Math.random()*9+1));
-      //   full = boxToBeChecked.hasClass('x') || boxToBeChecked.hasClass('o');
-      // }
-      currPlayer = playerTwo;
-            coinSound.play();
-            board.push(boxToBeChecked);
-            console.log(board);
-            boxToBeChecked.addClass('o');
-            boxToBeChecked.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
-      console.log(boxToBeChecked);
-      winConditions();
-      currPlayer = playerOne;
-    }
-    } else {
-      winConditions();
-    }
+        currPlayer = playerTwo;
+        //AI Block Function
+          if (board[0] === 'x' && board[1] === 'x' && board[2] != 'o') {
+            boxToBeChecked = bx3;
+            board[2] = 'o';
+          } else if (board[0] === 'x' && board[3] === 'x' && board[6] != 'o') {
+            boxToBeChecked = bx7;
+            board[6] = 'o';
+          } else if (board[0] === 'x' && board[4] === 'x' && board[8] != 'o') {
+            boxToBeChecked = bx9;
+            board[8] = 'o';
+          } else if (board[2] === 'x' && board[4] === 'x' && board[6] != 'o') {
+            boxToBeChecked = bx7;
+            board[6] = 'o';
+          } else if (board[1] === 'x' && board[2] === 'x' && board[0] != 'o') {
+            boxToBeChecked = bx1;
+            board[0] = 'o';
+          } else if (board[3] === 'x' && board[4] === 'x' && board[5] != 'o') {
+            boxToBeChecked = bx6;
+            board[5] = 'o';
+          } else if (board[0] === 'x' && board[2] === 'x' && board[1] != 'o') {
+            boxToBeChecked = bx2;
+            board[1] = 'o';
+          } else if (board[4] === 'x' && board[5] === 'x' && board[3] != 'o') {
+            boxToBeChecked = bx4;
+            board[3] = 'o';
+          } else if (board[5] === 'x' && board[3] === 'x' && board[4] != 'o') {
+            boxToBeChecked = bx5;
+            board[4] = 'o';
+          } else if (board[6] === 'x' && board[7] === 'x' && board[8] != 'o') {
+            boxToBeChecked = bx9;
+            board[8] = 'o';
+          } else if (board[7] === 'x' && board[8] === 'x' && board[6] != 'o') {
+            boxToBeChecked = bx7;
+            board[6] = 'o';
+          } else if (board[6] === 'x' && board[8] === 'x' && board[7] != 'o') {
+            boxToBeChecked = bx8;
+            board[7] = 'o';
+          } else if (board[1] === 'x' && board[4] === 'x' && board[7] != 'o') {
+            boxToBeChecked = bx8;
+            board[7] = 'o';
+          } else if (board[4] === 'x' && board[7] === 'x' && board[1] != 'o') {
+            boxToBeChecked = bx2;
+            board[1] = 'o';
+          } else if (board[4] === 'x' && board[8] === 'x' && board[0] != 'o') {
+            boxToBeChecked = bx1;
+            board[0] = 'o';
+          }
+        console.log(boxToBeChecked);
+        coinSound.play();
+        console.log(board);
+        boxToBeChecked.addClass('o');
+        boxToBeChecked.addClass(currPlayer).prepend('<h1 class="text-center currLetter">' + currPlayer + '</h1>');
+        winConditions();
+        currPlayer = playerOne;
+
+      }
+    }else {
+        winConditions();
+      }
   }, delay);
 };
 
@@ -200,37 +245,30 @@ function firstAIMove() {
   if(bx1.hasClass('x') || bx3.hasClass('x') || bx7.hasClass('x') || bx9.hasClass('x')) {
     bx5.addClass('o');
     bx5.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
-    board.push(bx5);
+    board[4] = 'o';
     coinSound.play();
   } else {
     bx7.addClass('o');
     bx7.addClass(currPlayer).prepend('<h1 class="text-center currLetter">'+currPlayer+'</h1>');
-    board.push(bx7);
+    board[6] = 'o';
     coinSound.play();
   }
 }
 
 function AIblock(){
-  if( board[0] ===   && `bx${arrayNumbers[i+1]}`.hasClass('x') && !`bx${arrayNumbers[i+2]}`.hasClass('o')) {
-     if(full = bx[i].hasClass('x') || bx[i+1].hasClass('o')) {
-       boxToBeChecked = bx[i+5];
+  for(var i = 0; i < arrayNumbers.length-1; i++){
+  if( board[i] === 'x' && board[i+1] === 'x' && !board[i+2] === 'o') {
+       boxToBeChecked = $('#'+ 2);
        console.log(boxToBeChecked);
-     } else {
-       boxToBeChecked = `bx${arrayNumbers[i+2]}`;
-       console.log(boxToBeChecked);
+   } else if(board[i] === 'x' && board[i+3] === 'x' && !board[i+6] === 'o') {
+       boxToBeChecked = $('#'+6);
      }
-   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+3]}`.hasClass('x') && !`bx${arrayNumbers[i+6]}`.hasClass('o')) {
-     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+3]}`.hasClass('o')) {
-       boxToBeChecked = `bx${arrayNumbers[i+7]}`;
-       console.log(boxToBeChecked);
-     } else {
-       boxToBeChecked = `bx${arrayNumbers[i+6]}`;
-     }
-   } else if(`bx${arrayNumbers[i]}`.hasClass('x') && `bx${arrayNumbers[i+2]}`.hasClass('x') && !`bx${arrayNumbers[i+1]}`.hasClass('o')) {
-     if(full = `bx${arrayNumbers[i]}`.hasClass('x') || `bx${arrayNumbers[i+2]}`.hasClass('o')) {
-       boxToBeChecked = `bx${arrayNumbers[i+3]}`;
-     } else{
-     boxToBeChecked = `bx${arrayNumbers[i+1]}`;
+     else if(board[0] === 'x' && board[4] === 'x' && !board[8] === 'o') {
+
+     boxToBeChecked = $('#'+ 8);
+   } else if(board[2] === 'x' && board[4] === 'x' && !board[6] === 'o') {
+
+     boxToBeChecked = $('#'+ 6);
      }
    }
   // arrayNumbers is global at top of app.js
